@@ -1,22 +1,24 @@
 require('./bootstrap');
-
-window.Vue = require('vue');
+import Vue from 'vue'
 
 //support vuex
 import Vuex from 'vuex'
-Vue.use(Vuex)
-import storeData from "./store/index"
+import App from './App'
 
+import storeData from "./store/index"
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
+Vue.use(Vuex)
+Vue.use(ElementUI)
 const store = new Vuex.Store(
-   storeData
+  storeData
 )
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-const app = new Vue({
-
-    el: '#app',
-
-    store, //vuex
-
-});
+new Vue({
+  el: '#app',
+  store,
+  render: h => h(App)
+})
